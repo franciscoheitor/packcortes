@@ -1,0 +1,1517 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+<title>UltraVirais - O Vício que Enriquece</title>
+<meta content="Transforme o tempo que você perde assistindo vídeos em uma renda extra de R$ 3.000-8.000/mês" name="description">
+<meta content="index, follow" name="robots">
+<!-- Preload critical resources -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Favicon -->
+<link href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23ff6b35'/><text x='50' y='65' text-anchor='middle' font-size='40' fill='white'>V</text></svg>" rel="icon">
+<style>
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            max-width: 100vw;
+            width: 100%;
+        }
+        
+        /* === CUSTOM SCROLLBAR === */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 3px;
+        }
+        
+        /* === ANIMATED BACKGROUND === */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(247, 147, 30, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+        
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(1deg); }
+            66% { transform: translate(-20px, 20px) rotate(-1deg); }
+        }
+        
+        /* === GRID PATTERN === */
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255, 107, 53, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 107, 53, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 30s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* === FLOATING ELEMENTS === */
+        .floating-element {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 6s;
+        }
+        
+        .floating-element:nth-child(4) {
+            top: 40%;
+            right: 25%;
+            animation-delay: 9s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        /* === SALES NOTIFICATIONS === */
+        #sales-notifications {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            max-width: 350px;
+        }
+        
+        .sales-notification {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.95), rgba(0, 204, 102, 0.95));
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transform: translateX(-400px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .sales-notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .notification-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        /* === URGENCY BAR === */
+        .urgency-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(255, 0, 0, 0.3);
+        }
+        
+        .city-highlight {
+            color: #00ff88;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+        
+        .viewers-highlight {
+            color: #ffff00;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { 
+                color: #ffff00;
+                text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+            }
+            50% { 
+                color: #ffff88;
+                text-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+            }
+        }
+        
+        /* === CONTAINER === */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* === HERO SECTION === */
+        .hero {
+            min-height: 35vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 0 40px;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(247, 147, 30, 0.2));
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            color: #ff6b35;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 3px;
+            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 3px;
+            background: linear-gradient(135deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+             .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+            margin-bottom: 0px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* === STATS SECTION === */
+        .stats {
+            padding: 0px 0 80px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(247, 147, 30, 0.05));
+            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.1);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ff6b35;
+            margin-bottom: 10px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        /* === PRICE SECTION === */
+        .price-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .price-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.1));
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 30px;
+            padding: 50px 40px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .price-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .price-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .price-old {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: line-through;
+            margin-bottom: 10px;
+        }
+        
+        .price-new {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .price-installments {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+        
+        .price-savings {
+            font-size: 1.2rem;
+            color: #00ff88;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        
+        .price-guarantee {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+        }
+        
+        /* === CTA BUTTON === */
+        .cta-button {
+            background: linear-gradient(135deg, #00ff88, #00cc66);
+            color: #000;
+            border: none;
+            padding: 20px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            animation: ctaPulse 2s ease-in-out infinite;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        @keyframes ctaPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 15px 40px rgba(0, 255, 136, 0.6);
+            }
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+        }
+        
+        /* === ARSENAL SECTION === */
+        .arsenal {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* === CAROUSEL === */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0 -20px;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 25px;
+            padding: 0 20px;
+        }
+        
+        .carousel-card {
+            flex: 0 0 300px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: grab;
+        }
+        
+        .carousel-card:active {
+            cursor: grabbing;
+        }
+        
+        .carousel-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+        }
+        
+        .card-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .carousel-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .card-overlay {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.9), rgba(247, 147, 30, 0.9));
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .card-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* === CAROUSEL NAVIGATION === */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .carousel-btn {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(247, 147, 30, 0.2));
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            color: #ff6b35;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.4), rgba(247, 147, 30, 0.4));
+            border-color: rgba(255, 107, 53, 0.6);
+            transform: scale(1.1);
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 107, 53, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background: #ff6b35;
+            transform: scale(1.2);
+        }
+        
+        /* === SOCIAL PROOF === */
+        .social-proof {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.03), rgba(247, 147, 30, 0.03));
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .testimonial {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.1);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            margin-right: 15px;
+        }
+        
+        .testimonial-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .result {
+            color: #00ff88;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        /* === OBJECTIONS === */
+        .objections {
+            padding: 80px 0;
+        }
+        
+        .objections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .objection-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .objection-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.1);
+        }
+        
+        .objection-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .objection-question {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ff6b35;
+        }
+        
+        .objection-answer {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        /* === GUARANTEE === */
+        .guarantee {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 204, 102, 0.05));
+        }
+        
+        .guarantee-box {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 102, 0.1));
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+        }
+        
+        .guarantee-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .guarantee-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+        
+        .guarantee-text {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        /* === FINAL CTA === */
+        .final-cta {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .scarcity-alert {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: inline-block;
+            font-weight: 700;
+            animation: urgentPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes urgentPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .scarcity-text {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        /* === FADE IN ANIMATION === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .urgency-bar {
+                font-size: 12px;
+                padding: 10px 15px;
+            }
+            
+            .hero {
+                padding: 100px 0 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .carousel-card {
+                flex: 0 0 280px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .objections-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .price-container {
+                padding: 40px 25px;
+            }
+            
+            .guarantee-box {
+                padding: 40px 25px;
+            }
+            
+            #sales-notifications {
+                left: 10px;
+                right: 10px;
+                max-width: none;
+            }
+            
+            .sales-notification {
+                font-size: 13px;
+                padding: 12px 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .urgency-bar {
+                font-size: 11px;
+                padding: 8px 10px;
+            }
+            
+            .hero-badge {
+                font-size: 12px;
+                padding: 10px 20px;
+            }
+            
+            .carousel-card {
+                flex: 0 0 250px;
+            }
+            
+            .price-container {
+                padding: 30px 20px;
+            }
+            
+            .guarantee-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Animated Background -->
+<div class="animated-bg"></div>
+<div class="grid-pattern"></div>
+<!-- Floating Elements -->
+<div class="floating-element">💰</div>
+<div class="floating-element">🚀</div>
+<div class="floating-element">📱</div>
+<div class="floating-element">💎</div>
+<!-- Sales Notifications Container -->
+<div id="sales-notifications"></div>
+<!-- Urgency Bar -->
+<div class="urgency-bar">
+<div class="urgency-content">
+            ⚡ PROMOÇÃO SECRETA DESBLOQUEADA – 95% DE DESCONTO!
+            <br>
+            👁 <span class="viewers-highlight" id="viewers">64</span> pessoas vendo agora
+        </div>
+</div>
+<!-- Hero Section -->
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<div class="hero-badge fade-in">🎯 MÉTODO SECRETO</div>
+<h1 class="hero-title fade-in">O vício que te distrai… é o mesmo que enriquece outros.</h1>
+<p class="hero-subtitle fade-in">Aprenda a monetizar o conteúdo que você mesmo alimenta.</p>
+</div>
+</div>
+</section>
+<!-- Price Section -->
+<section class="price-section">
+<div class="container">
+<div class="price-container fade-in">
+<div class="price-badge">🔥 OFERTA LIMITADA</div>
+<div class="price-content">
+<div class="price-old">De R$197 por apenas</div>
+<div class="price-new">R$9,90</div>
+<div class="price-installments">ou 12x de R$0,99 no cartão</div>
+<div class="price-savings">💰 Você economiza R$187,10!</div>
+<a class="cta-button" href="https://pay.kirvano.com/e185d5a8-a472-46a2-a9a1-30db14ef7290" target="_blank">
+                        🚀 DESTRAVAR ACESSO AGORA
+                    </a>
+<div class="price-guarantee">
+                        🛡️ Garantia de 7 dias ou seu dinheiro de volta
+                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="stats">
+<div class="container">
+<div class="stats-grid">
+<div class="stat-item fade-in">
+<span class="stat-number" data-target="48000">0</span>
+<span class="stat-label">Vídeos Virais</span>
+</div>
+<div class="stat-item fade-in">
+<span class="stat-number" data-target="9000000">0</span>
+<span class="stat-label">Views Geradas</span>
+</div>
+<div class="stat-item fade-in">
+<span class="stat-number" data-target="97">0</span>
+<span class="stat-label">Taxa de Sucesso</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Arsenal Section -->
+<section class="arsenal">
+<div class="container">
+<h2 class="section-title fade-in">VEJA O ARSENAL QUE TE ESPERA:</h2>
+<p class="section-subtitle fade-in">Transforme views em PIX com nosso acervo estratégico!</p>
+<div class="carousel-container fade-in">
+<div class="carousel-track" id="carouselTrack">
+<!-- Card 1: Family Guy -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes Family Guy" loading="lazy" src="images/1.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES FAMILY GUY</span>
+</div>
+</div>
+<div class="card-content">
+<h3>📺 Cortes Family Guy</h3>
+<p>+350 clipes hilários para engajamento instantâneo.</p>
+</div>
+</div>
+<!-- Card 2: Rick and Morty -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes Rick and Morty" loading="lazy" src="images/2.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES RICK AND MORTY</span>
+</div>
+</div>
+<div class="card-content">
+<h3>🧪 Cortes Rick and Morty</h3>
+<p>+100 doses de loucura para um público fiel e conectado.</p>
+</div>
+</div>
+<!-- Card 3: Comédia -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Vídeos de Comédia" loading="lazy" src="images/3.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES COMÉDIA</span>
+</div>
+</div>
+<div class="card-content">
+<h3>😂 Vídeos de Comédia</h3>
+<p>Gere risadas e compartilhamentos com clipes leves e virais.</p>
+</div>
+</div>
+<!-- Card 4: Filmes & Séries -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes de Filmes & Séries" loading="lazy" src="images/4.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES MOTIVACIONAIS</span>
+</div>
+</div>
+<div class="card-content">
+<h3>🎬 Cortes de Filmes & Séries</h3>
+<p>Cenas icônicas para prender a atenção e gerar comentários.</p>
+</div>
+</div>
+<!-- Card 5: Futebol -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes de Futebol" loading="lazy" src="images/5.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES FUTEBOL</span>
+</div>
+</div>
+<div class="card-content">
+<h3>⚽ Cortes de Futebol</h3>
+<p>Momentos épicos para engajar a torcida e bombar em dias de jogo.</p>
+</div>
+</div>
+<!-- Card 6: Virais Gringos -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Virais Gringos" loading="lazy" src="images/6.png">
+<div class="card-overlay">
+<span class="card-tag">VIRAIS GRINGOS</span>
+</div>
+</div>
+<div class="card-content">
+<h3>🌍 Virais Gringos</h3>
+<p>+10k vídeos exclusivos para sair na frente da concorrência.</p>
+</div>
+</div>
+<!-- Card 7: Milionários -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes Milionários" loading="lazy" src="images/7.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES MILIONÁRIOS</span>
+</div>
+</div>
+<div class="card-content">
+<h3>💰 Cortes Milionários</h3>
+<p>Inspire e conecte com lifestyle e estratégias de sucesso.</p>
+</div>
+</div>
+<!-- Card 8: Motivacionais -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes Motivacionais" loading="lazy" src="images/8.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES MOTIVACIONAIS</span>
+</div>
+</div>
+<div class="card-content">
+<h3>🚀 Cortes Motivacionais</h3>
+<p>Discursos impactantes para gerar conexão e inspirar ação.</p>
+</div>
+</div>
+<!-- Card 9: Ruyter -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes Ruyter" loading="lazy" src="images/9.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES RUYTER</span>
+</div>
+</div>
+<div class="card-content">
+<h3>🔥 Cortes Ruyter</h3>
+<p>Conteúdo pronto do fenômeno para atrair seguidores qualificados.</p>
+</div>
+</div>
+<!-- Card 10: Podcast -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes de Podcast" loading="lazy" src="images/10.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES PODCAST</span>
+</div>
+</div>
+<div class="card-content">
+<h3>🎙️ Cortes de Podcast</h3>
+<p>Os melhores insights dos maiores podcasts, prontos para postar.</p>
+</div>
+</div>
+<!-- Card 11: Fitness -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes Fitness" loading="lazy" src="images/11.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES FITNESS</span>
+</div>
+</div>
+<div class="card-content">
+<h3>💪 Cortes Fitness</h3>
+<p>Vídeos exclusivos para motivar e engajar o público fitness.</p>
+</div>
+</div>
+<!-- Card 12: Satisfatórios -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Vídeos Satisfatórios" loading="lazy" src="images/12.png">
+<div class="card-overlay">
+<span class="card-tag">VÍDEOS SATISFATÓRIOS</span>
+</div>
+</div>
+<div class="card-content">
+<h3>✨ Vídeos Satisfatórios</h3>
+<p>Prenda a atenção com conteúdos relaxantes e hipnotizantes.</p>
+</div>
+</div>
+<!-- Card 13: Marçal -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Cortes Marçal" loading="lazy" src="images/13.png">
+<div class="card-overlay">
+<span class="card-tag">CORTES MARÇAL</span>
+</div>
+</div>
+<div class="card-content">
+<h3>💼 Cortes Marçal</h3>
+<p>Insights e polêmicas do Marçal para gerar debate e views.</p>
+</div>
+</div>
+<!-- Card 14: Bônus -->
+<div class="carousel-card">
+<div class="card-image">
+<img alt="Direito de Revenda" loading="lazy" src="images/14.png">
+<div class="card-overlay">
+<span class="card-tag">BÔNUS REVENDA</span>
+</div>
+</div>
+<div class="card-content">
+<h3>🎁 BÔNUS: Direito de Revenda</h3>
+<p>Revenda o Pack UltraVirais como afiliado e lucre 90% por venda!</p>
+</div>
+</div>
+</div>
+<div class="carousel-nav">
+<button class="carousel-btn" id="prevBtn">‹</button>
+<button class="carousel-btn" id="nextBtn">›</button>
+</div>
+<div class="carousel-dots" id="carouselDots"></div>
+</div>
+</div>
+</section>
+<!-- Social Proof Section -->
+<section class="social-proof">
+<div class="container">
+<h2 class="section-title fade-in">VEJA OS RESULTADOS REAIS:</h2>
+<div class="testimonials-grid">
+<div class="testimonial fade-in">
+<div class="testimonial-header">
+<div class="testimonial-avatar">JP</div>
+<div class="testimonial-info">
+<h4>João Pedro, 22 anos</h4>
+<div class="result">R$ 4.200 no último mês</div>
+</div>
+</div>
+<p class="testimonial-text">"Cara, eu não acreditava que ia dar certo. Comecei postando os cortes do Family Guy e em 2 semanas já tinha feito minha primeira venda. Agora tô tirando mais que meu salário!"</p>
+</div>
+<div class="testimonial fade-in">
+<div class="testimonial-header">
+<div class="testimonial-avatar">AS</div>
+<div class="testimonial-info">
+<h4>Ana Silva, estudante</h4>
+<div class="result">R$ 2.800 trabalhando 2h/dia</div>
+</div>
+</div>
+<p class="testimonial-text">"Eu precisava de uma renda extra pra faculdade. Com os vídeos de comédia e motivacionais consegui uma grana boa trabalhando só 2 horas por dia. Mudou minha vida!"</p>
+</div>
+<div class="testimonial fade-in">
+<div class="testimonial-header">
+<div class="testimonial-avatar">RC</div>
+<div class="testimonial-info">
+<h4>Roberto Costa, aposentado</h4>
+<div class="result">R$ 3.500 sem aparecer</div>
+</div>
+</div>
+<p class="testimonial-text">"Com 58 anos pensei que era tarde pra internet. Mas os cortes de futebol e podcast me deram uma renda extra incrível. Não preciso nem aparecer no vídeo!"</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Objection Breakers -->
+<section class="objections">
+<div class="container">
+<h2 class="section-title fade-in">SUAS DÚVIDAS RESPONDIDAS:</h2>
+<div class="objections-grid">
+<div class="objection-item fade-in">
+<span class="objection-icon">🤔</span>
+<h3 class="objection-question">"Mas eu não sei editar vídeos..."</h3>
+<p class="objection-answer">Não precisa! Todos os vídeos já vêm prontos e editados. É só baixar e postar. Zero conhecimento técnico necessário.</p>
+</div>
+<div class="objection-item fade-in">
+<span class="objection-icon">⏰</span>
+<h3 class="objection-question">"Não tenho tempo pra isso..."</h3>
+<p class="objection-answer">São apenas 30 minutos por dia! Menos tempo que você gasta no Instagram. E pode fazer no seu horário livre.</p>
+</div>
+<div class="objection-item fade-in">
+<span class="objection-icon">💸</span>
+<h3 class="objection-question">"Será que realmente funciona?"</h3>
+<p class="objection-answer">Mais de 2.847 pessoas já estão faturando. Temos 7 dias de garantia total. Se não funcionar, devolvemos seu dinheiro.</p>
+</div>
+<div class="objection-item fade-in">
+<span class="objection-icon">📱</span>
+<h3 class="objection-question">"É muito complicado?"</h3>
+<p class="objection-answer">Super simples! Baixa o vídeo, posta na sua rede social, coloca o link de afiliado. Pronto! Até criança consegue fazer.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Guarantee Section -->
+<section class="guarantee">
+<div class="container">
+<div class="guarantee-box fade-in">
+<span class="guarantee-icon">🛡️</span>
+<h3 class="guarantee-title">GARANTIA BLINDADA 7 DIAS</h3>
+<p class="guarantee-text">Não gostar? Devolvemos 100% do seu dinheiro! Sem perguntas, sem burocracia. Você tem 7 dias para testar tudo.</p>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="final-cta">
+<div class="container">
+<div class="scarcity-alert fade-in">
+<p class="scarcity-text">⚠️ ATENÇÃO: Restam apenas 17 vagas com esse preço!</p>
+</div>
+<a class="cta-button fade-in" href="https://pay.kirvano.com/e185d5a8-a472-46a2-a9a1-30db14ef7290" target="_blank">
+                🚀 Destravar Acesso Agora
+            </a>
+</div>
+</section>
+<script>
+        // === NOTIFICAÇÕES DE VENDAS ===
+        const salesNotifications = [
+            { name: "João Pedro", action: "realizou sua primeira venda" },
+            { name: "Maria Silva", action: "faturou R$ 450 hoje" },
+            { name: "Carlos Santos", action: "atingiu R$ 2.000 este mês" },
+            { name: "Ana Costa", action: "vendeu 3 produtos em 1 hora" },
+            { name: "Pedro Lima", action: "conquistou 500 seguidores" },
+            { name: "Juliana Rocha", action: "fez R$ 180 ontem" },
+            { name: "Rafael Oliveira", action: "bateu a meta mensal" },
+            { name: "Camila Ferreira", action: "lucrou R$ 320 hoje" },
+            { name: "Lucas Almeida", action: "vendeu 5 produtos" },
+            { name: "Fernanda Souza", action: "faturou R$ 890 esta semana" }
+        ];
+
+        function showSalesNotification() {
+            const notification = salesNotifications[Math.floor(Math.random() * salesNotifications.length)];
+            const notificationElement = document.createElement('div');
+            notificationElement.className = 'sales-notification';
+            notificationElement.innerHTML = `
+                <span class="notification-icon">🎉</span>
+                <strong>${notification.name}</strong> ${notification.action}
+            `;
+            
+            const container = document.getElementById('sales-notifications');
+            container.appendChild(notificationElement);
+            
+            // Show notification
+            setTimeout(() => {
+                notificationElement.classList.add('show');
+            }, 100);
+            
+            // Hide and remove notification after 5 seconds
+            setTimeout(() => {
+                notificationElement.classList.remove('show');
+                setTimeout(() => {
+                    if (container.contains(notificationElement)) {
+                        container.removeChild(notificationElement);
+                    }
+                }, 500);
+            }, 5000);
+        }
+
+        // === CONTADOR DE PESSOAS VENDO ===
+        function updateViewersCount() {
+            const viewersElement = document.getElementById('viewers');
+            if (viewersElement) {
+                // Gera um número aleatório entre 45 e 89
+                const viewers = Math.floor(Math.random() * 45) + 45;
+                viewersElement.textContent = viewers;
+            }
+        }
+
+        // === CAROUSEL ===
+        function initCarousel() {
+            let currentSlide = 0;
+            let isAnimating = false;
+            
+            const track = document.getElementById('carouselTrack');
+            const cards = track.querySelectorAll('.carousel-card');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+            
+            // Criar dots baseado no número de slides visíveis
+            const slidesPerView = window.innerWidth <= 768 ? 1 : 3;
+            const totalSlides = Math.ceil(cards.length / slidesPerView);
+            
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            
+            function updateCarousel() {
+                if (isAnimating) return;
+                isAnimating = true;
+                
+                const cardWidth = cards[0].offsetWidth + 25;
+                const translateX = -currentSlide * cardWidth * slidesPerView;
+                track.style.transform = `translateX(${translateX}px)`;
+                
+                // Update dots
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 500);
+            }
+            
+            function nextSlide() {
+                const maxSlides = Math.ceil(cards.length / slidesPerView) - 1;
+                if (currentSlide < maxSlides) {
+                    currentSlide++;
+                } else {
+                    currentSlide = 0;
+                }
+                updateCarousel();
+            }
+            
+            function prevSlide() {
+                const maxSlides = Math.ceil(cards.length / slidesPerView) - 1;
+                if (currentSlide > 0) {
+                    currentSlide--;
+                } else {
+                    currentSlide = maxSlides;
+                }
+                updateCarousel();
+            }
+            
+            function goToSlide(index) {
+                if (!isAnimating) {
+                    currentSlide = index;
+                    updateCarousel();
+                }
+            }
+            
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            
+            // Touch support
+            let startX = 0;
+            let isDragging = false;
+            
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            });
+            
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+            });
+            
+            track.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+            });
+            
+            // Auto-play
+            setInterval(nextSlide, 6000);
+        }
+
+        // === ANIMAÇÕES DE CONTADORES ===
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                // Formatar números grandes
+                let displayValue = Math.floor(current);
+                if (displayValue >= 1000000) {
+                    displayValue = (displayValue / 1000000).toFixed(1) + 'M';
+                } else if (displayValue >= 1000) {
+                    displayValue = (displayValue / 1000).toFixed(0) + 'K';
+                } else if (target === 97) {
+                    displayValue = displayValue + '%';
+                }
+                
+                element.textContent = displayValue;
+            }, 16);
+        }
+
+        // === SCROLL ANIMATIONS ===
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate counters when stats section is visible
+                        if (entry.target.classList.contains('stats')) {
+                            const counters = entry.target.querySelectorAll('.stat-number');
+                            counters.forEach(counter => {
+                                const target = parseInt(counter.dataset.target);
+                                if (target && counter.textContent === '0') {
+                                    animateCounter(counter, target);
+                                }
+                            });
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all fade-in elements AND stats section specifically
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Observe stats section specifically
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        }
+
+        // === INICIALIZAÇÃO ===
+        document.addEventListener('DOMContentLoaded', function() {
+            // Bloquear zoom adicional via JavaScript
+            document.addEventListener('touchstart', function(e) {
+                if (e.touches.length > 1) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(e) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+            
+            // Inicializar componentes
+            initCarousel();
+            initScrollAnimations();
+            
+            // Atualizar contador de pessoas a cada 8 segundos
+            updateViewersCount();
+            setInterval(updateViewersCount, 8000);
+            
+            // Mostrar primeira notificação após 3 segundos
+            setTimeout(showSalesNotification, 3000);
+            
+            // Mostrar notificações a cada 12-18 segundos
+            function scheduleNextNotification() {
+                const delay = Math.random() * 6000 + 12000; // 12-18 segundos
+                setTimeout(() => {
+                    showSalesNotification();
+                    scheduleNextNotification();
+                }, delay);
+            }
+            scheduleNextNotification();
+        });
+
+        // === SMOOTH SCROLLING ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+
+
+</body></html>
